@@ -1,0 +1,10 @@
+.open_face {
+  background-image: url(../img/sale.png);
+  display: block;
+  margin: 0 auto;
+ 	
+  width: 200px;
+  height: 200px;
+  margin-top: 20px;
+  margin-right: 22px;
+}

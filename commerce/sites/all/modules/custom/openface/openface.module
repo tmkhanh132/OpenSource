@@ -1,0 +1,59 @@
+<?php 
+/**
+* @file
+* Custom functionality for a wind farm database.
+*/
+
+/*
+* Implements hook_help().
+*/
+// function windfarms_help($path,$arg) {
+
+// }
+/*
+* hook_permission().
+*/
+$module_path = drupal_get_path('module', 'openface');
+drupal_add_css($module_path .'/css/openface.css');
+function openface_permission(){
+	return array(
+			'administer wind farms' => array(
+				'title'=> t('administer OpenFace'),
+				'description'=> t('Perform Administrative'),
+				),
+		);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function openface_block_info() {
+  $blocks = array();
+  $blocks['my_block'] = array(
+    'info' => t('OpenFace Block'),
+  );
+  
+  return $blocks;
+}
+
+
+
+
+function openface_block_view($delta='') {
+  $block = array();
+  $text = 'abc';
+
+  switch($delta) {
+    case 'my_block' :
+      $block['content'] = array(
+      	
+        '#markup' => '<a href="http://localhost/commerce/news-01" class="open_face"></a>',
+        
+      );
+
+      break;
+  }
+  
+  return $block;
+}
+

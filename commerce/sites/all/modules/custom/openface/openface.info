@@ -1,0 +1,4 @@
+name = Open Face
+description = Group L3_OpenFace's module.
+core = 7.x
+version = 7.x-0.1
