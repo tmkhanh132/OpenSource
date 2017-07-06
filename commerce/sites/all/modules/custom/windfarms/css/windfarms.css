@@ -1,0 +1,10 @@
+.quangcao {
+  background-image: url(../img/sale.jpg);
+  display: block;
+  margin: 0 auto;
+ 	
+  width: 200px;
+  height: 178px;
+  margin-top: 42px;
+  margin-right: 22px;
+}

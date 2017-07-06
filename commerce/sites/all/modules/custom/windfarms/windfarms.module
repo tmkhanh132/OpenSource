@@ -1,0 +1,132 @@
+<?php 
+/**
+* @file
+* Custom functionality for a wind farm database.
+*/
+
+/*
+* Implements hook_help().
+*/
+// function windfarms_help($path,$arg) {
+
+// }
+/*
+* hook_permission().
+*/
+$module_path = drupal_get_path('module', 'windfarms');
+drupal_add_css($module_path .'/css/windfarms.css');
+function windfarms_permission(){
+	return array(
+			'administer wind farms' => array(
+				'title'=> t('administer Wind Farms'),
+				'description'=> t('Perform Administrative'),
+				),
+		);
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function windfarms_block_info() {
+  $blocks = array();
+  $blocks['my_block'] = array(
+    'info' => t('My Custom Block'),
+  );
+  
+  return $blocks;
+}
+
+
+
+
+function windfarms_block_view($delta='') {
+  $block = array();
+  $text = 'abc';
+
+  switch($delta) {
+    case 'my_block' :
+      $block['content'] = array(
+      	
+        '#markup' => '<a href="http://localhost/commerce/catagory?f[0]=field_product%253Afield_catagory%3A4" class="quangcao"></a>',
+        
+      );
+ //    $block = array(
+	// 	'subject' => 'Title',
+	// 	'content' => array(
+	// 	    '#theme' => 'image',
+	// 	    '#path' => 'https://www.w3schools.com/html/pic_mountain.jpg',
+	// 	    '#attributes' => array('class' => 'module-name-center-image'),
+
+	// 		)
+	// );
+      break;
+  }
+  
+  return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+// function windfarms_block_view($delta='') {
+//   $block = array();
+  
+//   switch($delta) {
+//     case 'my_block' :
+//       $block['content'] = my_block_view();
+//       break;
+//   }
+  
+//   return $block;
+// }
+
+/**
+ * Custom function to assemble renderable array for block content.
+ * Returns a renderable array with the block content.
+ * @return
+ *   returns a renderable array of block content.
+ */
+// function my_block_view() {
+//   $block = array();
+
+//   // Capture the image file path and form into HTML with attributes
+//   $image_file = file_load(variable_get('block_image_fid', ''));
+//   $image_path = '';
+
+//   if (isset($image_file->uri)) {
+//     $image_path = $image_file->uri;
+//   }
+
+//   $image = theme_image(array(
+//     'path' => ($image_path),
+//     'alt' => t('Image description here.'),
+//     'title' => t('This is our block image.'),
+//     'attributes' => array('class' => 'class_name'),
+//   ));
+
+//   // Capture WYSIWYG text from the variable
+//   $text = variable_get('text_variable', '');
+
+//   // Block output in HTML with div wrapper
+//     $block = array(
+//     'image' => array(
+//       '#prefix' => '',
+//       '#type' => 'markup',
+//       '#markup' => $image, ), 
+//     'message' => array( '#type' => 'markup', '#markup' => $text, '#suffix' => '', ),
+//     ); 
+//     return $block;
+// }
+
+function windfarms_default_rules_configuration() {
+  $rule = rules_reaction_rule();
+  $rule->label = 'example default rule';
+  $rule->active = FALSE;
+  $rule->event('node_update')
+       ->condition(rules_condition('data_is', array('data:select' => 'node:status', 'value' => TRUE))->negate())
+       ->condition('data_is', array('data:select' => 'node:type', 'value' => 'page'))
+       ->action('drupal_message', array('message' => 'A node has been updated.'));
+
+  $configs['rules_test_default_1'] = $rule;
+  return $configs;
+}
